@@ -1,4 +1,4 @@
-/*Promothee-II*/
+/*Promethee-II*/
 
 import java.util.*;
 
