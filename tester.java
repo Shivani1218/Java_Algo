@@ -24,7 +24,7 @@ class mobile_Detail
          ben=b;
          att=a;
    }
-   public void dis_detail()
+      public void dis_detail()
     {
      System.out.print("\t\t\t");
      for(int i=0;i<c;i++)
@@ -100,7 +100,7 @@ class Calculate_rank extends mobile_Detail
                }
                
                //To Display Normalized matrix
-               for(int i=0;i<r;i++)
+              /* for(int i=0;i<r;i++)
                 {
                     System.out.print("Mobile "+(i+1)+"\t\t");
                     for(int j=0;j<c;j++)
@@ -109,7 +109,7 @@ class Calculate_rank extends mobile_Detail
                 
                      }
                     System.out.println();
-               }
+               }*/
         }
         //Calculating difference matrix and aggregrate matrix
         void difference_matrix()
@@ -166,7 +166,7 @@ class Calculate_rank extends mobile_Detail
                  {
                      rt=difference_matrix[i][j][l]+rt;                    
                  }
-                 System.out.println(count);
+                
 
                  t[count]=rt;
                  count++;
