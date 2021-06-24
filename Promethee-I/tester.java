@@ -203,6 +203,13 @@ class Calculate_rank extends mobile_Detail
         //Calculating entering flow and leaving flow and final rank
         void calc_rank()
         {
+              int count=0;
+              for( int i=1;i<r;i++)
+              {
+                  count=count+i;
+              }
+              System.out.println(count);
+              int[][] ranking_matrix=new int[count][3];
               for(int i=0;i<r;i++)
               {
                     double row_sum=0.0,col_sum=0.0;
@@ -215,32 +222,50 @@ class Calculate_rank extends mobile_Detail
                     col_sum=col_sum+aggregated[j][i];
                     }
                 }
+                //first column (0) will be leaving flow and column (1) will be entering flow
                 flow[i][0]=row_sum/(r-1);
                 flow[i][1]=col_sum/(r-1);
                }
-               double[] te=new double[r];
-               for(int i=0;i<r;i++)
+              
+               //let 2=prefferred ,1= R and 0=I
+               for( int i=0;i<r;i++)
                {
-                    flow[i][2]=flow[i][0]-flow[i][1];
-                    rank[i]=-1;
-                    te[i]=flow[i][2];
-                } 
-                int ranking=1;
-                
-                for(int i=0;i<r;i++)
-                {
-                     int mind=max(te,r);
-                     rank[mind]=ranking;
-                     ranking++;
-                     te[mind]=(double)-1;
-                }
-                System.out.println("\n\nRankings are: ");
-                 
-                for(int i=0;i<r;i++)
-                {
-                     System.out.println("Mobile "+(i+1)+": "+rank[i]);
-                }
+                        int n=0;
+                     for(int j=0;j<r;j++)
+                     {
+                         if(i!=j)
+                         { if((flow[i][0]>flow[j][0] &&flow[i][0]<flow[j][0])||(flow[i][0]>flow[j][0] &&flow[i][0]==flow[j][0])||(flow[i][0]==flow[j][0] &&flow[i][0]<flow[j][0]))
+                          {
+                                ranking_matrix[n][0]=i;
+                                ranking_matrix[n][1]=j;
+                                ranking_matrix[n][2]=2;
+                                System.out.println("CONTROL");
+                          }
+                          if((flow[i][0]==flow[j][0] &&flow[i][0]==flow[j][0]))
+                          {
+                                ranking_matrix[n][0]=i;
+                                ranking_matrix[n][1]=j;
+                                ranking_matrix[n][2]=0;
+                          }
+                          else{
+                                ranking_matrix[n][0]=i;
+                                ranking_matrix[n][1]=j;
+                                ranking_matrix[n][2]=1;
 
+                          }
+                          }
+                          n++;
+                     }
+               }
+               
+               for(int i=0;i<count;i++)
+               {
+                    if(ranking_matrix[i][2]==2)
+                    {
+                    System.out.println(ranking_matrix[i][0]+" will be prefferred over "+ranking_matrix[i][1]);
+                    }
+                    System.out.println(ranking_matrix[i][2]);
+               }
         }
 } 
 

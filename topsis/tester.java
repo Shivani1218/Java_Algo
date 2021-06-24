@@ -1,18 +1,23 @@
+//Topsis Algorithm
+
+
 import java.util.*;
 import java.lang.*;
+import java.util.concurrent.TimeUnit;
+
 class mobile_Detail
 {
    protected int r;
    protected int c;
    protected double[] w; 
-   protected int[][] detail;
+   protected double[][] detail;
    protected  int[] ben;
    protected String[] att;
-   public mobile_Detail(int r1,int c1,int[][] det,int[] b,String[] a,double[] wt)
+   public mobile_Detail(int r1,int c1,double[][] det,int[] b,String[] a,double[] wt)
    {
          r=r1;
          c=c1;
-         detail=new int[r][c];
+         detail=new double[r][c];
          ben=new int[c];
          att=new String[c];
          detail=det;
@@ -60,14 +65,14 @@ class mobile_Detail
        }
       System.out.println("Enter number of objects to be compared ");
       r=in.nextInt();
-      detail=new int[r][c];
+      detail=new double[r][c];
        for(int i=0;i<r;i++)
        { 
              System.out.println("Enter details of object: "+(i+1));
              for(int j=0;j<c;j++)
             {
                 System.out.print(att[j]+" : ");
-                detail[i][j]=in.nextInt();
+                detail[i][j]=in.nextDouble();
             }
                  
        }
@@ -105,7 +110,7 @@ class Calc_rank extends mobile_Detail
      int[] rank;
 
 
-    public Calc_rank(int r1,int c1,int[][] det,int[] b,String[] a,double[] wt)
+    public Calc_rank(int r1,int c1,double[][] det,int[] b,String[] a,double[] wt)
     {
         super(r1, c1, det,b, a,wt);
        normalized_matrix=new double[r][c];
@@ -264,16 +269,24 @@ class tester
 {
      public static void main(String[] args)
      {
-            
-            double[] wt={0.33333333,0.33333333,0.3333333333};  
-            int[][] det={{7,60,5},{9,60,6},{5,70,9},{4,80,3}}; 
-            int[] ben={1,1,0};
-            String[] a={"x1","x2","x3"};
-            Calc_rank m1= new Calc_rank(4,3,det,ben,a,wt);
+            //Added Time Complexity
+            /*
+           double[] wt={0.34,0.27,0.22,0.10,0.02,0.04};  
+            double[][] det={{0.94388,0.4144,14194,4,0.052,4},{0.22108,0.4144,7050.5,4,0.0584,4},{0.1842,0.4144,981.2,4,0.0496,4},{0.1764,0.3134,981.2,5,0.4,5},{0.8432,0.3134,14194,3,0.0522,4},{0.3223,0.4144,14194,4,0.0544,4},{0.1842,0.3134,981.2,5,0.00554,4},{0.22343,0.4134,981.2,5,0.4,5},{0.4312,0.4144,14000,4,0.054,5},{0.1764,0.3134,981.2,5,0.4,5}}; 
+            int[] ben={0,0,0,1,0,1};
+            String[] a={"a1","a2","a3","a3","a4","a5","a6"};
+            Calc_rank m1= new Calc_rank(10,6,det,ben,a,wt);
             m1.dis_detail();
+            long startTime = System.nanoTime();
             m1.normalization();
             m1.eucledian();
             m1.assign_rank();
+            long endTime = System.nanoTime();
+            long timeElapsed = endTime - startTime;
+            System.out.println("Execution time in milliseconds: " + (double)timeElapsed/1000000);
+            */
+            
+                        
             Calc_rank m2=new Calc_rank();
             m2.input();
              m2.dis_detail();
